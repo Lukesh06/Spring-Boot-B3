@@ -1,0 +1,20 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <bean id = "car" class = "com.ekalavya.Car">
+   </bean>
+   
+    <bean id = "bus" class = "com.ekalavya.Bus">
+   </bean>
+   
+    <bean id = "travelAgent" class = "com.ekalavya.TravelAgent">
+    <property name="vehicle" ref="bus"> </property>
+    <property name="vehicleNumber" value="MH 12 4587"></property>
+   </bean>
+   
+
+</beans>
