@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "1c8a47ee-45b2-4e45-a812-8d5642e9d9cb",
+		"name": "Spring Boot Batch 3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9792683"
+	},
+	"item": [
+		{
+			"name": "Get Employee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/employee/details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Employees",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/employee/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Path Variable",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/demo/hii/10/200",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"demo",
+						"hii",
+						"10",
+						"200"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request Param",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/demo/hello?lastName= Thakur&firstName=Harsh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"demo",
+						"hello"
+					],
+					"query": [
+						{
+							"key": "lastName",
+							"value": " Thakur"
+						},
+						{
+							"key": "firstName",
+							"value": "Harsh"
+						},
+						{
+							"key": "city",
+							"value": "Bhopal",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Employee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"firstName\":\"Gaurav\",\r\n   \"lastName\":\"Sharma\",\r\n   \"address\":\"Sarafa Bajar\",\r\n   \"city\":\"Indore\",\r\n   \"state\":\"Madhya Pradesh\",\r\n   \"mobileNumber\":\"9587458962\",\r\n   \"emailId\":\"gaurav.sharma@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		}
+	]
+}
