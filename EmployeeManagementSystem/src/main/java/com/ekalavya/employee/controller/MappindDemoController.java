@@ -18,6 +18,10 @@ public class MappindDemoController {
 	@GetMapping("/hello")
 	public String sayHello(@RequestParam String firstName, @RequestParam(required = false) String lastName,
 			@RequestParam(required = false, defaultValue = "Pune") String city) {
+		
+		String text =  null;
+		System.out.println(text.length());
+		
 		if (lastName == null) {
 			lastName = "";
 		}
