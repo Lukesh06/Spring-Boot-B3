@@ -24,24 +24,41 @@ public class EmployeeServiceImpl implements EmployeeService {
 	EmployeeDao employeeDao;
 
 	@Override
-	public Employee getEmployee() {
-		Employee employee = new Employee(100, "Harsh Thakur", "Indore", "Madhya Pradesh");
-		return employee;
+	public EmployeeResponseData getEmployeeDetails(int empId) {
+		EmployeeResponseData data = new EmployeeResponseData();
+		EmployeeResponseModel response = new EmployeeResponseModel();
+		EmployeeDto employeeDto = employeeDao.getEmployeeDetails(empId);
+
+		BeanUtils.copyProperties(employeeDto, response);
+
+		response.setEmployeeName(employeeDto.getFirstName() + " " + employeeDto.getLastName());
+
+		data.setDatails(response);
+		return data;
 	}
 
 	@Override
-	public List<Employee> getAllEmployees() {
-		List<Employee> listEmployee = new ArrayList<>();
+	public List<EmployeeResponseData> getAllEmployees() {
 
-		Employee employee1 = new Employee(100, "Harsh Thakur", "Indore", "Madhya Pradesh");
-		Employee employee2 = new Employee(101, "Monit", "Bhopal", "Madhya Pradesh");
-		Employee employee3 = new Employee(102, "Aishwarya", "Indore", "Madhya Pradesh");
-		Employee employee4 = new Employee(103, "Amit Bhagat", "Pune", "Maharastra");
+		List<EmployeeResponseData> listEmployee = new ArrayList<>();
 
-		listEmployee.add(employee1);
-		listEmployee.add(employee2);
-		listEmployee.add(employee3);
-		listEmployee.add(employee4);
+		List<EmployeeDto> listEmployeeDto = employeeDao.getAllEmployees();
+
+		for (EmployeeDto employeeDto : listEmployeeDto) {
+
+			EmployeeResponseData data = new EmployeeResponseData();
+
+			EmployeeResponseModel response = new EmployeeResponseModel();
+
+			BeanUtils.copyProperties(employeeDto, response);
+
+			response.setEmployeeName(employeeDto.getFirstName() + " " + employeeDto.getLastName());
+
+			data.setDatails(response);
+
+			listEmployee.add(data);
+		}
+
 		return listEmployee;
 	}
 

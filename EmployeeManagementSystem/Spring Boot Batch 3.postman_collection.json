@@ -18,15 +18,16 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/employee/details",
+					"raw": "http://localhost:9090/employee/details/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "9090",
 					"path": [
 						"employee",
-						"details"
+						"details",
+						"2"
 					]
 				}
 			},
@@ -44,12 +45,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8080/employee/all",
+					"raw": "http://localhost:9090/employee/all",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "9090",
 					"path": [
 						"employee",
 						"all"
@@ -119,15 +120,71 @@
 			"name": "Create Employee",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"firstName\":\"Gaurav\",\r\n   \"lastName\":\"Sharma\",\r\n   \"address\":\"Sarafa Bajar\",\r\n   \"city\":\"Indore\",\r\n   \"state\":\"Madhya Pradesh\",\r\n   \"mobileNumber\":\"9587458962\",\r\n   \"emailId\":\"gaurav.sharma@gmail.com\"\r\n}",
+					"raw": "{\r\n   \"firstName\":\"Rashmi\",\r\n   \"lastName\":\"Mehta\",\r\n   \"address\":\"Kolar Road\",\r\n   \"city\":\"Gwalior\",\r\n   \"state\":\"Madhya Pradesh\",\r\n   \"mobileNumber\":\"9587458254\",\r\n   \"emailId\":\"rashmi.mehta@gmail.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/employee/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"employee",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Employee Xml Input",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<firstName>Gaurav</firstName>\r\n<lastName>Sharma</lastName>\r\n<address>Sarafa Bajar</address>\r\n<city>Indore</city>\r\n<state>Madhya Pradesh</state>\r\n<mobileNumber>9587458962</mobileNumber>\r\n<emailId>gaurav.sharma@gmail.com</emailId>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/employee/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"employee",
+						"save"
+					]
 				}
 			},
 			"response": []

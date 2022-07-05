@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,21 +34,21 @@ public class EmployeeController {
 	EmployeeService employeeService;
 	
 
-	@GetMapping(path = "/details", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<Employee> getEmployee() {
+	@GetMapping(path = "/details/{id}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<EmployeeResponseData> getEmployee(@PathVariable int id) {
 		
-		Employee employee = employeeService.getEmployee();
+		EmployeeResponseData employeeResponseData = employeeService.getEmployeeDetails(id);
 		
-		ResponseEntity<Employee> response = new ResponseEntity<Employee>(employee, HttpStatus.OK);
+		ResponseEntity<EmployeeResponseData> response = new ResponseEntity<EmployeeResponseData>(employeeResponseData, HttpStatus.OK);
 		return response;
 	}
 
 	@GetMapping(path = "/all", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
-	public ResponseEntity<List<Employee>> getAllEmployees() {
+	public ResponseEntity<List<EmployeeResponseData>> getAllEmployees() {
 
-		List<Employee> listEmployee = employeeService.getAllEmployees();
+		List<EmployeeResponseData> listEmployee = employeeService.getAllEmployees();
 
-		ResponseEntity<List<Employee>> response = new ResponseEntity<List<Employee>>(listEmployee, HttpStatus.ACCEPTED);
+		ResponseEntity<List<EmployeeResponseData>> response = new ResponseEntity<List<EmployeeResponseData>>(listEmployee, HttpStatus.ACCEPTED);
 
 		return response;
 
@@ -93,5 +94,10 @@ public class EmployeeController {
 		return response;
 
 	}
+	
+	
+	
+	
+	
 
 }
