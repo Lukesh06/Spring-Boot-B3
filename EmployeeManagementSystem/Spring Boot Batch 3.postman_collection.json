@@ -60,6 +60,43 @@
 			"response": []
 		},
 		{
+			"name": "Get Employee By name",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9090/employee/byName?lastName=Sharma",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"employee",
+						"byName"
+					],
+					"query": [
+						{
+							"key": "firstName",
+							"value": "Rashmi",
+							"disabled": true
+						},
+						{
+							"key": "lastName",
+							"value": "Sharma"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Path Variable",
 			"request": {
 				"method": "GET",
@@ -129,7 +166,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n   \"firstName\":\"Rashmi\",\r\n   \"lastName\":\"Mehta\",\r\n   \"address\":\"Kolar Road\",\r\n   \"city\":\"Gwalior\",\r\n   \"state\":\"Madhya Pradesh\",\r\n   \"mobileNumber\":\"9587458254\",\r\n   \"emailId\":\"rashmi.mehta@gmail.com\"\r\n}",
+					"raw": "{\r\n   \"firstName\":\"Amit\",\r\n   \"lastName\":\"Sharma\",\r\n   \"address\":\"Sadar bajar\",\r\n   \"city\":\"Jabalpur\",\r\n   \"state\":\"Madhya Pradesh\",\r\n   \"mobileNumber\":\"9425145879\",\r\n   \"emailId\":\"amit.sharma@gmail.com\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
