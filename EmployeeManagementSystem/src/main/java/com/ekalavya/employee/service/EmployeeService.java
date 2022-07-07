@@ -13,4 +13,6 @@ public interface EmployeeService {
 	
 	EmployeeResponseData saveEmployee(EmployeeRequestModel request);
 	
+	List<EmployeeResponseData> getEmployeeByFirstAndLastName(String firstName, String lastName);
+	
 }

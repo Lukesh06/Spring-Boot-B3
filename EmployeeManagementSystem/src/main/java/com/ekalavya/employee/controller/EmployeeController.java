@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ekalavya.employee.model.Employee;
@@ -29,17 +30,18 @@ import com.ekalavya.employee.utils.EmployeeConstants;
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
-	
+
 	@Autowired
 	EmployeeService employeeService;
-	
 
-	@GetMapping(path = "/details/{id}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	@GetMapping(path = "/details/{id}", produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<EmployeeResponseData> getEmployee(@PathVariable int id) {
-		
+
 		EmployeeResponseData employeeResponseData = employeeService.getEmployeeDetails(id);
-		
-		ResponseEntity<EmployeeResponseData> response = new ResponseEntity<EmployeeResponseData>(employeeResponseData, HttpStatus.OK);
+
+		ResponseEntity<EmployeeResponseData> response = new ResponseEntity<EmployeeResponseData>(employeeResponseData,
+				HttpStatus.OK);
 		return response;
 	}
 
@@ -48,7 +50,8 @@ public class EmployeeController {
 
 		List<EmployeeResponseData> listEmployee = employeeService.getAllEmployees();
 
-		ResponseEntity<List<EmployeeResponseData>> response = new ResponseEntity<List<EmployeeResponseData>>(listEmployee, HttpStatus.ACCEPTED);
+		ResponseEntity<List<EmployeeResponseData>> response = new ResponseEntity<List<EmployeeResponseData>>(
+				listEmployee, HttpStatus.ACCEPTED);
 
 		return response;
 
@@ -68,7 +71,6 @@ public class EmployeeController {
 
 	}
 
-	
 	@ExceptionHandler({ MethodArgumentNotValidException.class })
 	public ResponseEntity<ErrorResponse> handleValidationException(MethodArgumentNotValidException exception) {
 
@@ -83,7 +85,6 @@ public class EmployeeController {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(EmployeeConstants.DATE_PATTERN);
 		LocalDateTime now = LocalDateTime.now();
 
-		
 		errorResponse.setTimestamp(dtf.format(now));
 		errorResponse.setHttpStatusCode(HttpStatus.BAD_REQUEST.toString());
 		errorResponse.setErrorCode("E");
@@ -94,10 +95,18 @@ public class EmployeeController {
 		return response;
 
 	}
-	
-	
-	
-	
-	
+
+	@GetMapping(path = "/byName", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<List<EmployeeResponseData>> getEmployeeByName(
+			@RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName) {
+
+		List<EmployeeResponseData> listEmployee = employeeService.getEmployeeByFirstAndLastName(firstName, lastName);
+
+		ResponseEntity<List<EmployeeResponseData>> response = new ResponseEntity<List<EmployeeResponseData>>(
+				listEmployee, HttpStatus.ACCEPTED);
+
+		return response;
+
+	}
 
 }

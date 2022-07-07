@@ -84,4 +84,28 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return data;
 	}
 
+	@Override
+	public List<EmployeeResponseData> getEmployeeByFirstAndLastName(String firstName, String lastName) {
+		List<EmployeeResponseData> listEmployee = new ArrayList<>();
+
+		List<EmployeeDto> listEmployeeDto = employeeDao.getEmployeeByFirstAndLastName(firstName, lastName);
+
+		for (EmployeeDto employeeDto : listEmployeeDto) {
+
+			EmployeeResponseData data = new EmployeeResponseData();
+
+			EmployeeResponseModel response = new EmployeeResponseModel();
+
+			BeanUtils.copyProperties(employeeDto, response);
+
+			response.setEmployeeName(employeeDto.getFirstName() + " " + employeeDto.getLastName());
+
+			data.setDatails(response);
+
+			listEmployee.add(data);
+		}
+
+		return listEmployee;
+	}
+
 }

@@ -62,4 +62,30 @@ public class EmployeeDao {
 		return employeeDto;
 	}
 
+	public List<EmployeeDto> getEmployeeByFirstAndLastName(String firstName, String lastName) {
+		List<EmployeeDto> listEmployeeDto = new ArrayList<>();
+
+		List<EmployeeEntity> listEmployeeEntity = null;
+
+		if (firstName == null || lastName == null) {
+
+			listEmployeeEntity = (List<EmployeeEntity>) employeeRepository.findByFirstNameOrLastNameOrderByFirstName(firstName,
+					lastName);
+		} else {
+
+			listEmployeeEntity = (List<EmployeeEntity>) employeeRepository.findByFirstNameAndLastName(firstName,
+					lastName);
+		}
+
+		for (EmployeeEntity employeeEntity : listEmployeeEntity) {
+
+			EmployeeDto employeeDto = new EmployeeDto();
+
+			BeanUtils.copyProperties(employeeEntity, employeeDto);
+
+			listEmployeeDto.add(employeeDto);
+		}
+		return listEmployeeDto;
+	}
+
 }
