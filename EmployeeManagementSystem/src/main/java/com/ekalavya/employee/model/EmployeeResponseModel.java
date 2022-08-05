@@ -1,5 +1,11 @@
 package com.ekalavya.employee.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
 public class EmployeeResponseModel {
 
 	private Integer employeeId;
@@ -17,6 +23,8 @@ public class EmployeeResponseModel {
 	private String mobileNumber;
 
 	private String emailId;
+	
+	private List<EmployeeAddress> addresses;
 
 	public String getEmployeeReferenceNumber() {
 		return employeeReferenceNumber;
@@ -81,6 +89,14 @@ public class EmployeeResponseModel {
 
 	public void setEmployeeId(Integer employeeId) {
 		this.employeeId = employeeId;
+	}
+
+	public List<EmployeeAddress> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<EmployeeAddress> addresses) {
+		this.addresses = addresses;
 	}
 	
 	

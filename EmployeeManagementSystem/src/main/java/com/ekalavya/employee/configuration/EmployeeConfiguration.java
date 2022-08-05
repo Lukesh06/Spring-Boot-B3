@@ -1,10 +1,9 @@
 package com.ekalavya.employee.configuration;
 
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.ekalavya.employee.service.EmployeeService;
-import com.ekalavya.employee.service.EmployeeServiceImpl;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class EmployeeConfiguration {
@@ -14,4 +13,9 @@ public class EmployeeConfiguration {
 		//return new EmployeeServiceImpl();
 	//}
 	
+	@LoadBalanced
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
 }

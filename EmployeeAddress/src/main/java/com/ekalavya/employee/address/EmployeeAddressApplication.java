@@ -1,15 +1,15 @@
-package com.ekalavya.employee;
+package com.ekalavya.employee.address;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-@SpringBootApplication
 @EnableEurekaClient
-public class EmployeeManagementSystemApplication {
+@SpringBootApplication
+public class EmployeeAddressApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EmployeeManagementSystemApplication.class, args);
+		SpringApplication.run(EmployeeAddressApplication.class, args);
 	}
-	
+
 }

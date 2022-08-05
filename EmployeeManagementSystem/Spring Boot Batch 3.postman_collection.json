@@ -60,6 +60,33 @@
 			"response": []
 		},
 		{
+			"name": "Get All Employees API Gateway",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8082/employee-api/employee/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"employee-api",
+						"employee",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get Employee By name",
 			"request": {
 				"method": "GET",
@@ -181,6 +208,42 @@
 					],
 					"port": "9090",
 					"path": [
+						"employee",
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Employee-API Gateway",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"firstName\":\"Jitendra\",\r\n   \"lastName\":\"Sharma\",\r\n   \"address\":\"Sarafa bajar\",\r\n   \"city\":\"Sagar\",\r\n   \"state\":\"Madhya Pradesh\",\r\n   \"mobileNumber\":\"9874585632\",\r\n   \"emailId\":\"jitendra.sharma@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/employee-api/employee/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"employee-api",
 						"employee",
 						"save"
 					]

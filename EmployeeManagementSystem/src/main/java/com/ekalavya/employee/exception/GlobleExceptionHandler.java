@@ -57,4 +57,25 @@ public class GlobleExceptionHandler {
 		
 		return response;
 	}
+	
+	@ExceptionHandler(AddressNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleAddressNotFoundException(AddressNotFoundException ex){
+		
+		String errorMessage = ex.getMessage();
+		
+		ErrorResponse errorResponse = new ErrorResponse();
+		errorResponse.setErrorMessage(errorMessage);
+
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(EmployeeConstants.DATE_PATTERN);
+		LocalDateTime now = LocalDateTime.now();
+
+		errorResponse.setTimestamp(dtf.format(now));
+		errorResponse.setHttpStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+		errorResponse.setErrorCode("AD001");
+		
+		ResponseEntity<ErrorResponse> response = new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+		
+		return response;
+	}
 }
