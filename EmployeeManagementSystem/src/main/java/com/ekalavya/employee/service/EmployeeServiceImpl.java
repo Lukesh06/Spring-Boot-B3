@@ -15,7 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.ekalavya.employee.dao.EmployeeDao;
@@ -39,6 +38,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	Environment env;
+	
+	@Autowired
+	AdressFeignClient adressFeignClient;
 
 	@Override
 	public EmployeeResponseData getEmployeeDetails(int empId) {
@@ -131,7 +133,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return listEmployee;
 	}
 
-	public List<EmployeeAddress> getEployeeAddress(Integer empId) {
+	public List<EmployeeAddress> getEployeeAddressRestTemplate(Integer empId) {
 
 		String url = env.getProperty("address-service-url") + EmployeeConstants.ADDRESS_URL_RESOURCE + empId;
 		List<EmployeeAddress> employeeAddressList = null;
@@ -169,6 +171,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 		ResponseEntity<String> addressResponse = restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
 		
 		System.out.println("Received Response::"+addressResponse);
+	}
+	
+	public List<EmployeeAddress> getEployeeAddress(Integer empId) {
+
+		List<EmployeeAddress> employeeAddressList = null;
+		try {
+			ResponseEntity<List<EmployeeAddress>> responseAddressList = adressFeignClient.getEmployeeAddress(empId);
+
+			employeeAddressList = responseAddressList.getBody();
+		} catch (Exception ex) {
+
+			throw new AddressNotFoundException(EmployeeConstants.NOT_ABLE_TO_GET_ADDRESS);
+		}
+
+		return employeeAddressList;
+
 	}
 
 }

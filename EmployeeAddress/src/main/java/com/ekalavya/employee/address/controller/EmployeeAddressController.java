@@ -1,8 +1,8 @@
 package com.ekalavya.employee.address.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
@@ -14,26 +14,22 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ekalavya.employee.address.enums.AddressType;
 import com.ekalavya.employee.address.model.AddressModel;
+import com.ekalavya.employee.address.service.EmployeeAddressService;
 
 @RestController
 @RequestMapping("/address")
 public class EmployeeAddressController {
 
+	@Autowired
+	private EmployeeAddressService employeeAddressService;
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<List<AddressModel>> getEmployeeAddress(@PathVariable Integer id) {
 
 		System.out.println("Employee Id:::" + id);
-
-		AddressModel addressModel1 = new AddressModel("Sarafa Bajar", "Indore", "Madhya Pradesh", 425874,
-				AddressType.PERMANENT);
-		AddressModel addressModel2 = new AddressModel("Station Road", "Bhopal", "Madhya Pradesh", 478475,
-				AddressType.PRESENT);
-
-		List<AddressModel> addressModelList = new ArrayList<>();
-		addressModelList.add(addressModel1);
-		addressModelList.add(addressModel2);
+		
+		List<AddressModel> addressModelList = employeeAddressService.getEmployeeAddress(id);
 
 		ResponseEntity<List<AddressModel>> response = new ResponseEntity<List<AddressModel>>(addressModelList,
 				HttpStatus.OK);

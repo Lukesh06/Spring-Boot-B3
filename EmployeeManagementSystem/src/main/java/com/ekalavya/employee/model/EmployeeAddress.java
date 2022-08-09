@@ -49,12 +49,14 @@ public class EmployeeAddress {
 	}
 
 	public EmployeeAddress(String address, String city, String state, Integer pin, String type) {
-		super();
 		this.address = address;
 		this.city = city;
 		this.state = state;
 		this.pin = pin;
 		this.type = type;
+	}
+
+	public EmployeeAddress() {
 	}
 
 }

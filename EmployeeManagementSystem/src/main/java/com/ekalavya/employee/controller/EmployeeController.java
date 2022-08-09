@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ekalavya.employee.model.Employee;
 import com.ekalavya.employee.model.EmployeeRequestModel;
 import com.ekalavya.employee.model.EmployeeResponseData;
 import com.ekalavya.employee.model.ErrorResponse;
